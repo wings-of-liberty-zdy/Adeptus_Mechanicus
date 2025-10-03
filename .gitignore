@@ -1,0 +1,53 @@
+# =============================================
+# STM32项目Git忽略规则 - 兼容CLion和Keil
+# =============================================
+
+# CLion特定文件
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# CLion构建目录
+cmake-build-*/
+build/
+
+# Keil MDK特定文件
+*.uvprojx
+*.uvoptx
+*.uvguix.*
+*.crf
+*.d
+*.axf
+*.tra
+*.dep
+*.lnp
+*.sct
+*.lst
+
+# 构建输出文件
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.su
+
+# 调试文件
+*.debug
+*.jdebug
+
+# 编译临时文件
+*.tmp
+*.log
+*.cache
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# STM32CubeMX自动生成但不需要版本控制的文件
+.mxproject
