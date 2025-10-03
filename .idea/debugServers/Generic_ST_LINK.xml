@@ -1,0 +1,14 @@
+<component name="DebugServers">
+  <generic-debug-target name="Generic ST-LINK" uniqueID="19d92ab2-31b3-4623-9b6f-251e2216b80a">
+    <debugger version="1">
+      <debugger kind="GDB" isBundled="true" />
+      <env />
+    </debugger>
+    <gdbserver exe="C:\ST\STM32CubeCLT_1.19.0\STLink-gdb-server\bin\ST-LINK_gdbserver.exe" args="-p 61234   -cp C:\ST\STM32CubeCLT_1.19.0\STM32CubeProgrammer\bin --halt  --apid 0 -d --frequency 8000  " live-watches-enabled="true">
+      <env />
+    </gdbserver>
+    <console port="61235" />
+    <target reset-before="false" />
+    <connection extended-remote="false" remote-string="tcp:localhost:61234" warmup-ms="500" />
+  </generic-debug-target>
+</component>
