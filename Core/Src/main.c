@@ -18,11 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "PS2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +55,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern uint8_t All_But[16];//所有按玀状态值
+extern uint16_t XY[4];//摇杆模拟值
 /* USER CODE END 0 */
 
 /**
@@ -86,6 +88,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -96,6 +99,7 @@ int main(void)
   HAL_Delay(100);
   while (1)
   {
+    GetData();
     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);  // 翻转引脚状态
     HAL_Delay(500);
     /* USER CODE END WHILE */
