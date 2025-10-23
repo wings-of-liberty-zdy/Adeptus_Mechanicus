@@ -74,7 +74,7 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  AX_PS2_Init();
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -102,8 +102,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    AX_PS2_ScanKey(&ps2);
-    HAL_Delay(50);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
