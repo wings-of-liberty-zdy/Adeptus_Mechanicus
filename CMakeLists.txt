@@ -36,8 +36,8 @@ enable_language(C ASM)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
-        Core/Inc/PS2.h
-        Core/Src/PS2.c)
+        Core/Inc/ax_ps2.h
+        Core/Src/ax_ps2.c)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
