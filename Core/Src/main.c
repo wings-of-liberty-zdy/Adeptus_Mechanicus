@@ -21,10 +21,12 @@
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
+#include "stdio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ax_ps2.h"
+//#include "PS2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,6 +58,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//extern uint8_t All_But[16];
+//extern uint16_t XY[4];
 JOYSTICK_TypeDef ps2;
 /* USER CODE END 0 */
 
@@ -74,14 +78,13 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  AX_PS2_Init();
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
-
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
@@ -99,11 +102,32 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
   HAL_Delay(100);
+  AX_PS2_Init();
   while (1)
   {
     /* USER CODE END WHILE */
     AX_PS2_ScanKey(&ps2);
-    HAL_Delay(50);
+
+    //判断R1键是否按下（btn2的第4位为1表示按下）
+    if (ps2.btn2 & (1 << 4)) {
+      // R1按下，点亮LED
+      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+    } else {
+      // R1松开，熄灭LED
+      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13,GPIO_PIN_SET);
+    }
+    //GetData();
+
+    // 原LED控制逻辑（已正确）
+    // if (All_But[PSB_R1] == 1)  // 1=按下，0=松开
+    // {
+    //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);  // 点亮
+    // }
+    // else
+    // {
+    //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);    // 熄灭
+    // }
+    HAL_Delay(10);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
